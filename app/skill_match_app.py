@@ -1,7 +1,7 @@
-﻿import streamlit as st
+import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Marketing Data Analyst Skill Match", page_icon="📊")
+st.set_page_config(page_title="Marketing Data Analyst Skill Match", page_icon="??")
 
 st.title("How Does Your Skillset Match the Real Job Market?")
 st.write("""
@@ -37,16 +37,16 @@ if st.button("Check My Match"):
         st.subheader("Skills You Have That Are In Demand:")
         if matched:
             for skill in matched:
-                st.write(f"✅ {skill.title()}")
+                st.write(f"? {skill.title()}")
         else:
             st.write("None of your listed skills matched our tracked skill list.")
 
         st.subheader("High-Demand Skills You're Missing:")
         if len(missing_high_demand) > 0:
             for _, row in missing_high_demand.head(5).iterrows():
-                st.write(f"⚠️ {row['skill']} — appears in {row['pct_of_postings']:.0f}% of postings")
+                st.write(f"?? {row['skill']} � appears in {row['pct_of_postings']:.0f}% of postings")
         else:
-            st.write("You cover all the major high-demand skills we tracked. 🎉")
+            st.write("You cover all the major high-demand skills we tracked. ??")
     else:
         st.warning("Enter at least one skill first.")
 
@@ -57,5 +57,5 @@ descriptions. US data (primary) uses full descriptions from 188 postings.
 Canada/Australia data was also analyzed but excluded from this tool due to
 truncated description text in the source API, making skill-mention rates
 unreliable for those markets specifically. Full methodology and limitations:
-[GitHub repo link]
+github.com/jbx-p/job-market-skill-analysis
 """)
