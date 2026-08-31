@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 700px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "black"}, "id": "Excel", "label": "Excel", "shape": "dot", "value": 57}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Tableau", "label": "Tableau", "shape": "dot", "value": 34}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Power BI", "label": "Power BI", "shape": "dot", "value": 31}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Looker", "label": "Looker", "shape": "dot", "value": 8}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Snowflake", "label": "Snowflake", "shape": "dot", "value": 8}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "SQL", "label": "SQL", "shape": "dot", "value": 67}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "CRM", "label": "CRM", "shape": "dot", "value": 11}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Data Visualization", "label": "Data Visualization", "shape": "dot", "value": 23}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Python", "label": "Python", "shape": "dot", "value": 33}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Machine Learning", "label": "Machine Learning", "shape": "dot", "value": 19}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Statistics", "label": "Statistics", "shape": "dot", "value": 25}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "SAS", "label": "SAS", "shape": "dot", "value": 6}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "ETL", "label": "ETL", "shape": "dot", "value": 12}, {"color": "#97c2fc", "font": {"color": "black"}, "id": "Big Query", "label": "Big Query", "shape": "dot", "value": 4}]);
+                  edges = new vis.DataSet([{"from": "Excel", "to": "Looker", "value": 3}, {"from": "Excel", "to": "Power BI", "value": 16}, {"from": "Excel", "to": "Tableau", "value": 12}, {"from": "Excel", "to": "SQL", "value": 24}, {"from": "Excel", "to": "Machine Learning", "value": 6}, {"from": "Excel", "to": "Python", "value": 9}, {"from": "Excel", "to": "Data Visualization", "value": 5}, {"from": "Excel", "to": "SAS", "value": 5}, {"from": "Excel", "to": "ETL", "value": 3}, {"from": "Excel", "to": "CRM", "value": 4}, {"from": "Excel", "to": "Statistics", "value": 3}, {"from": "Tableau", "to": "Looker", "value": 7}, {"from": "Tableau", "to": "Power BI", "value": 19}, {"from": "Tableau", "to": "Snowflake", "value": 3}, {"from": "Tableau", "to": "CRM", "value": 3}, {"from": "Tableau", "to": "Data Visualization", "value": 15}, {"from": "Tableau", "to": "SQL", "value": 24}, {"from": "Tableau", "to": "ETL", "value": 8}, {"from": "Tableau", "to": "Machine Learning", "value": 9}, {"from": "Tableau", "to": "Python", "value": 17}, {"from": "Tableau", "to": "SAS", "value": 5}, {"from": "Tableau", "to": "Statistics", "value": 14}, {"from": "Power BI", "to": "Looker", "value": 4}, {"from": "Power BI", "to": "CRM", "value": 3}, {"from": "Power BI", "to": "Data Visualization", "value": 10}, {"from": "Power BI", "to": "SQL", "value": 21}, {"from": "Power BI", "to": "ETL", "value": 5}, {"from": "Power BI", "to": "Machine Learning", "value": 5}, {"from": "Power BI", "to": "Python", "value": 8}, {"from": "Power BI", "to": "SAS", "value": 5}, {"from": "Power BI", "to": "Statistics", "value": 6}, {"from": "Looker", "to": "Snowflake", "value": 3}, {"from": "Looker", "to": "Big Query", "value": 3}, {"from": "Looker", "to": "Data Visualization", "value": 5}, {"from": "Looker", "to": "Python", "value": 5}, {"from": "Looker", "to": "SQL", "value": 5}, {"from": "Looker", "to": "Machine Learning", "value": 4}, {"from": "Looker", "to": "Statistics", "value": 5}, {"from": "Snowflake", "to": "SQL", "value": 3}, {"from": "SQL", "to": "Statistics", "value": 18}, {"from": "SQL", "to": "Data Visualization", "value": 16}, {"from": "SQL", "to": "ETL", "value": 9}, {"from": "SQL", "to": "Machine Learning", "value": 9}, {"from": "SQL", "to": "Python", "value": 23}, {"from": "SQL", "to": "SAS", "value": 6}, {"from": "Data Visualization", "to": "ETL", "value": 5}, {"from": "Data Visualization", "to": "Machine Learning", "value": 11}, {"from": "Data Visualization", "to": "Python", "value": 14}, {"from": "Data Visualization", "to": "SAS", "value": 3}, {"from": "Data Visualization", "to": "Statistics", "value": 10}, {"from": "Data Visualization", "to": "Big Query", "value": 3}, {"from": "Python", "to": "Machine Learning", "value": 14}, {"from": "Python", "to": "ETL", "value": 5}, {"from": "Python", "to": "SAS", "value": 3}, {"from": "Python", "to": "Statistics", "value": 16}, {"from": "Python", "to": "Big Query", "value": 3}, {"from": "Machine Learning", "to": "ETL", "value": 3}, {"from": "Machine Learning", "to": "Statistics", "value": 9}, {"from": "Statistics", "to": "ETL", "value": 4}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
