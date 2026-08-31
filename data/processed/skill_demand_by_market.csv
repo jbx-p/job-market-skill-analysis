@@ -1,0 +1,42 @@
+source,skill,count,pct_of_postings
+adzuna_au,SQL,10,2.865329512893983
+adzuna_au,CRM,8,2.292263610315186
+adzuna_au,Excel,2,0.5730659025787965
+adzuna_au,Power BI,11,3.151862464183381
+adzuna_au,Data Visualization,2,0.5730659025787965
+adzuna_au,Snowflake,2,0.5730659025787965
+adzuna_au,ETL,6,1.7191977077363898
+adzuna_au,Statistics,2,0.5730659025787965
+adzuna_au,Python,1,0.28653295128939826
+adzuna_au,Machine Learning,2,0.5730659025787965
+adzuna_ca,Excel,5,1.5822784810126582
+adzuna_ca,CRM,4,1.2658227848101267
+adzuna_ca,SQL,10,3.1645569620253164
+adzuna_ca,Tableau,2,0.6329113924050633
+adzuna_ca,Power BI,7,2.2151898734177213
+adzuna_ca,Snowflake,1,0.31645569620253167
+adzuna_ca,Looker,1,0.31645569620253167
+adzuna_ca,SEO,2,0.6329113924050633
+adzuna_ca,Machine Learning,3,0.949367088607595
+adzuna_ca,Data Visualization,1,0.31645569620253167
+adzuna_ca,Python,2,0.6329113924050633
+adzuna_ca,Big Query,1,0.31645569620253167
+adzuna_ca,SAS,1,0.31645569620253167
+kaggle_us,Excel,57,30.319148936170215
+kaggle_us,Tableau,34,18.085106382978726
+kaggle_us,Power BI,31,16.48936170212766
+kaggle_us,Google Analytics,3,1.5957446808510638
+kaggle_us,Looker,8,4.25531914893617
+kaggle_us,A/B Testing,4,2.127659574468085
+kaggle_us,Snowflake,8,4.25531914893617
+kaggle_us,SQL,67,35.638297872340424
+kaggle_us,CRM,11,5.851063829787234
+kaggle_us,Data Visualization,23,12.23404255319149
+kaggle_us,Python,33,17.5531914893617
+kaggle_us,Machine Learning,19,10.106382978723403
+kaggle_us,Statistics,25,13.297872340425531
+kaggle_us,SAS,6,3.1914893617021276
+kaggle_us,ETL,12,6.382978723404255
+kaggle_us,Segmentation,2,1.0638297872340425
+kaggle_us,Google Ads,1,0.5319148936170213
+kaggle_us,Big Query,4,2.127659574468085
